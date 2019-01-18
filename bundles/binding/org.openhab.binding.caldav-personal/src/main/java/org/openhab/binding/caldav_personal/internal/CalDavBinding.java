@@ -167,13 +167,17 @@ public class CalDavBinding extends AbstractBinding<CalDavBindingProvider> implem
      */
     @Override
     public void eventBegins(CalDavEvent event) {
+        logger.debug("event begins: {}", event.getShortName());
         if (!calendars.contains(event.getCalendarId())) {
             return;
         }
 
-        if (event.getStart().isBeforeNow()) {
-            return;
-        }
+        logger.debug("check start of event: {}", event.getShortName());
+        // if (event.getStart().isBeforeNow()) {
+        logger.debug("event start time: {} ", event.getStart().toString());
+        logger.debug("now:              {} ", DateTime.now().toString());
+        // return;
+        // }
 
         logger.debug("adding event to map: {}", event.getShortName());
 
